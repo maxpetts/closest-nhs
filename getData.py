@@ -5,8 +5,8 @@ import enum
 import json
 
 if load_dotenv(".env"):
-        print("""Loaded env variables""")
-    else:
+    print("""Loaded env variables""")
+else:
     print("""
     You need a personal NHS API key.
     Available from: https://developer.api.nhs.uk/register
