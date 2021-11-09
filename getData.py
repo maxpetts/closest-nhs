@@ -92,29 +92,18 @@ def constructSelectStr(selections: list(selections)) -> str:
     return ",".join([f"{selection.value}" for selection in selections])
 
 
+# move to wrapper
+def searchByPostcode(postCode: str, orgTypes: list(organisID), select: list(selections) = selections.Name.value) -> requests.Response:
+    url = "https://api.nhs.uk/service-search/search-postcode-or-place?api-version=1&search=b90"
+
+    return dispatchRequest(
+        constrJSONBody(constructFilterStr(orgTypes),
+                       constructSelectStr(select)),
+        url)
 
 
 if __name__ == "__main__":
     # TODO: parse inp args to constrJSONBody
-    searchQuery = "b90"
-    body = constrJSONBody("(OrganisationTypeID eq 'DEN')",
-                          "OrganisationName,Address1,Address2,Address3,Postcode", "OrganisationName", 2, False)
-    print(dispatchRequest(searchQuery, body).text)
-#     response = requests.post(
-#         url='https://api.nhs.uk/service-search/search-postcode-or-place?api-version=1&search=' +
-#             searchQuery.replace(" ", ""),
-#         headers={
-#             'Content-Type': 'application/json',
-#             'subscription-key': 'bf1cc75615804b51ba42024449373e5c'
-#                 },
-#         data=u'''
-# {
-#     "filter": "(OrganisationTypeID eq 'DEN') or (OrganisationTypeID eq 'OPT') or (OrganisationTypeID eq 'PHA')",
-#     "select": "OrganisationName,Address1,Address2,Address3,City,County,Postcode,OpeningTimes,Contacts",
-#     "top": 25,
-#     "skip": 0,
-#     "count": true
-# }
-#     ''', )
 
-#     print(response.text)
+    print(searchByPostcode("b90", [organisID.Dentist, organisID.Clinic], [
+          selections.Name, selections.Address]).text)
