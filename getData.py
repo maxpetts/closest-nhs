@@ -53,7 +53,7 @@ class organisID(enum.Enum):
 class selections(enum.Enum):
     Name = "OrganisationName"
     Address = "Address1,Address2,Address3,City,County,Postcode"
-    Times = "OpeningTimes"
+    OpenTimes = "OpeningTimes"
     Contact = "Contacts"
 
 
