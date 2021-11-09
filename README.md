@@ -10,6 +10,10 @@ _Working as of: 9th Nov 2021_
 2. Then go to your dev account [profile](https://developer.api.nhs.uk/profile) & copy your Primary key
 3. Paste your key into a .env file at the root of this project. You can do this using `echo "your primary key" > .env` - of course replace text in quotes with your personal key.
 
+**OR**
+
+1. Type `make setup` in root folder of project
+
 # Todo
 
 - [x] Get JSON from NHS API
