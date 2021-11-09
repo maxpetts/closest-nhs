@@ -1,16 +1,25 @@
-import requests
 from dotenv import load_dotenv
 from os import getenv
+import requests
 import enum
 import json
 
+
+"""Print colours to terminal
+https://www.geeksforgeeks.org/print-colors-python-terminal/"""
+def prRed(skk): print("\033[91m {}\033[00m" .format(skk))
+def prGreen(skk): print("\033[92m {}\033[00m" .format(skk))
+
+
 if load_dotenv(".env"):
-    print("""Loaded env variables""")
+    if getenv("NHSKEY"):
+        prGreen("""Loaded NHS API Key""")
+    else:
+        prRed("""Couldn't load key - check README""")
+        exit(0)
 else:
-    print("""
-    You need a personal NHS API key.
-    Available from: https://developer.api.nhs.uk/register
-    """)
+    prRed("""Couldn't find .env file""")  # or some other error
+    exit(0)
 
 
 class organisID(enum.Enum):
