@@ -22,6 +22,7 @@ else:
     exit(0)
 
 
+# move to wrapper
 class organisID(enum.Enum):
     AreaTeam = 'LAT'
     CareHome = 'SCL'
@@ -47,7 +48,12 @@ class organisID(enum.Enum):
     UrgentCare = 'UC'
 
 
-def constrJSONBody(filter: str, select: str, order: str, top: int, count: bool) -> str:
+# move to wrapper
+class selections(enum.Enum):
+    Name = "OrganisationName"
+    Address = "Address1,Address2,Address3,City,County,Postcode"
+    Times = "OpeningTimes"
+    Contact = "Contacts"
     """Contstruct a json string of all the required search queries for REST API"""
     body = {"filter": filter, "select": select,
             "orderby": order, "top": top, "count": count}
