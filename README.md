@@ -1,6 +1,8 @@
 # closest-nhs
 
-A utility to get the closest NHS location: GPs, Dentists, Pharmacies etc
+A utility to get the closest NHS location: GPs, Dentists, Pharmacies etc.
+
+_A NHS API Wrapper?_
 
 # Set-up
 
@@ -21,3 +23,5 @@ _Working as of: 9th Nov 2021_
 - [ ] Accept search query as user input
 - [ ] Allow user to select what Organisation type to search for.
 - [ ] GUI
+- [ ] Add fallback if API fails - sql database
+- [ ] Swap to better architecture (seperate Wrapper & Handler)
