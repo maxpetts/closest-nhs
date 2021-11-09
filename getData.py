@@ -54,22 +54,44 @@ class selections(enum.Enum):
     Address = "Address1,Address2,Address3,City,County,Postcode"
     Times = "OpeningTimes"
     Contact = "Contacts"
+
+
+# move to handler
+def dispatchRequest(reqBody: str,
+                    url="https://api.nhs.uk/service-search/search-postcode-or-place?api-version=1",
+                    reqHeaders={"subscription-key": getenv("NHSKEY"), "Content-Type": "application/json"}) -> requests.Response:
+    """Dispatch a post request to the NHS search"""
+
+    # Should I strip REST request queries?
+    prGreen("Dispatching with headers of:")
+    print(reqHeaders)
+    prGreen("Dispatching with body of:")
+    print(reqBody)
+    print(
+        f"Dispatching with headers of: {reqHeaders}\nDispatching with body of: {reqBody}")
+    res = requests.post(url, headers=reqHeaders, data=reqBody)
+    return res
+
+
+# move to handler
+def constrJSONBody(filter: str, select: str, order: str = selections.Name.value, top: int = 1, count: bool = False) -> str:
     """Contstruct a json string of all the required search queries for REST API"""
     body = {"filter": filter, "select": select,
             "orderby": order, "top": top, "count": count}
     return json.dumps(body)
 
 
-def dispatchRequest(searchQuery: str, reqBody: str, reqHeaders={"subscription-key": getenv("NHSKEY"), "Content-Type": "application/json"}) -> requests.Response:
-    """Dispatch a post request to the NHS search postcode-or-place url."""
-    # Should I strip REST request queries?
-    url = "https://api.nhs.uk/service-search/search-postcode-or-place?api-version=1&search=" + \
-        searchQuery.replace(" ", "")
+# move to handler
+def constructFilterStr(orgIDs: list(organisID)) -> str:
+    return " or ".join(
+        [f"(OrganisationTypeID eq '{orgID.value}')" for orgID in orgIDs])
 
-    print(
-        f"Dispatching with headers: {reqHeaders}\n and body content of: {reqBody}")
-    res = requests.post(url, headers=reqHeaders, data=reqBody)
-    return res
+
+# move to handler
+def constructSelectStr(selections: list(selections)) -> str:
+    return ",".join([f"{selection.value}" for selection in selections])
+
+
 
 
 if __name__ == "__main__":
