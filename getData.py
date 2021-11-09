@@ -94,7 +94,7 @@ def constructSelectStr(selections: list(selections)) -> str:
 
 
 # move to wrapper
-def searchByPostcode(postCode: str, orgTypes: list(organisID), select: list(selections) = selections.Name.value) -> requests.Response:
+def searchByPostcode(postCode: str, orgTypes: list(organisID), select: list(selections) = [selections.Name]) -> requests.Response:
     url = "https://api.nhs.uk/service-search/search-postcode-or-place?api-version=1&search=b90"
 
     return dispatchRequest(
