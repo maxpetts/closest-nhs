@@ -1,8 +1,10 @@
 from dotenv import load_dotenv
 from os import getenv
 import requests
+import getopt
 import enum
 import json
+import sys
 
 
 """Print colours to terminal
@@ -104,5 +106,50 @@ def searchByPostcode(postCode: str, orgTypes: list(organisID), select: list(sele
 if __name__ == "__main__":
     # TODO: parse inp args to constrJSONBody
 
-    print(searchByPostcode("b90", [organisID.Dentist, organisID.Clinic], [
-          selections.Name, selections.Address]).text)
+    organisation: list(organisID) = []
+    select: list(selections) = []
+    by = ""
+    query = ""
+
+    try:
+        opts, remainder = getopt.gnu_getopt(
+            sys.argv[1:], 'o:s:b:q', ['organisation=', 'select=', 'by=', 'query='])
+    except getopt.GetoptError as err:
+        print('Argument Error:', err)
+        sys.exit(1)
+
+    print(opts)
+
+    for opt, arg in opts:
+        if opt in ('-o', '--organisation'):
+            try:
+                for org in arg.split(","):
+                    organisation.append(organisID[org])
+
+            except KeyError as err:
+                print("""Incorrect args. They must be comma seperated with no spaces.""")
+                if input("Do you want to see all available organisation arguments? (y/n) : ") == "y":
+                    for i, org in enumerate(organisID):
+                        print(org.name, end=',' if i < (
+                            len(organisID)-1) else '\n')
+
+                sys.exit(1)
+
+        elif opt in ('-s', '--select'):
+            try:
+                for sel in arg.split(","):
+                    select.append(selections[sel])
+
+            except KeyError as err:
+                print("""Incorrect args. They must be comma seperated with no spaces.""")
+                if input("Do you want to see all available select arguments? (y/n) : ") == "y":
+                    for i, sel in enumerate(selections):
+                        print(sel.name, end=',' if i < (
+                            len(organisID)-1) else '\n')
+
+                sys.exit(1)
+
+        elif opt in ('-b', '--by'):
+            by = arg
+        elif opt in ('-q', '--query'):
+            query = arg
