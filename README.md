@@ -4,7 +4,7 @@ A utility to search for the nearest NHS facility.
 
 _A NHS API Wrapper?_
 
-I do not own any of the data you can recieve through this wrapper / guide & you cannot recieve any data from the NHS without your own API key.
+I do not own any of the data you can recieve through this wrapper/guide.
 
 # Set-up
 
