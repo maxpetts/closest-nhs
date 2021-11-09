@@ -24,12 +24,12 @@ _Working as of: 9th Nov 2021_
 # Usage
 
 After following the steps in the set-up section above, enter the following into your terminal of choice:
-`$ python3 getData.py `.
+`$ python3 getData.py`.
 You must be within the root folder of this project.
 
 ## Options
 
-Typical program call: `$ python3 getData.py -oDentist -sName,Address -bname
+Typical program call: `$ python3 getData.py -oDentist,ClinCommisGrp -sName,Address,OpenTimes -bname`
 
 | Short Form | Long Form        | Argument                                    |
 | ---------- | ---------------- | ------------------------------------------- |
@@ -38,12 +38,13 @@ Typical program call: `$ python3 getData.py -oDentist -sName,Address -bname
 | `-b`       | `--by`           | coord, postplace, name, ods                 |
 | `-q`       | `--query`        | _Depends upon `-b`_                         |
 
-The argument passed to `-b` _or_ `-by` represents what the returned data will be sorted by
+The argument passed to `-b` _or_ `-by` represents what the data returned by the API will be sorted by
 
 ### Organisation types
 
 This argument is the complete list of organisation types provided by the NHS, _this could also be considered as a facility type_.
 The below list is the direct argument format; minus the minus(-).
+Multiple arguments are accepted as comma-seperated strings; without spaces.
 
 - AreaTeam
 - CareHome
@@ -73,6 +74,7 @@ The below list is the direct argument format; minus the minus(-).
 This argument is an abstracted version of all of the column names within their OpenAPI.
 It's only abstracted in the address type, as this contains many different columns: _postcode, city etc_.
 The below list is the direct argument format; minus the minus(-).
+Multiple arguments are accepted as comma-seperated strings; without spaces.
 
 - Name
 - Address
