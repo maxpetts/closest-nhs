@@ -11,15 +11,14 @@ def prRed(skk): print("\033[91m {}\033[00m" .format(skk))
 def prGreen(skk): print("\033[92m {}\033[00m" .format(skk))
 
 
-if load_dotenv(".env"):
-    if getenv("NHSKEY"):
+# Can't exit program here, as this would screw up cmd line key option
+if load_dotenv('.env'):
+    if getenv('NHSKEY'):
         prGreen("""Loaded NHS API Key""")
     else:
-        prRed("""Couldn't load key - check README""")
-        exit(0)
+        prRed("""Couldn't load key - use: make setup""")
 else:
-    prRed("""Couldn't find .env file""")  # or some other error
-    exit(0)
+    prRed("""Couldn't load .env file""")
 
 
 # move to wrapper
