@@ -118,8 +118,6 @@ if __name__ == "__main__":
         print('Argument Error:', err)
         sys.exit(1)
 
-    print(opts)
-
     for opt, arg in opts:
         if opt in ('-o', '--organisation'):
             try:
@@ -127,8 +125,9 @@ if __name__ == "__main__":
                     organisation.append(organisID[org])
 
             except KeyError as err:
-                print("""Incorrect args. They must be comma seperated with no spaces.""")
-                if input("Do you want to see all available organisation arguments? (y/n) : ") == "y":
+                print(
+                    """\033[91mIncorrect args.\033[00m They must be comma seperated with no spaces.""")
+                if input(" Do you want to see all available organisation arguments?\n (y/n) : ") == "y":
                     for i, org in enumerate(organisID):
                         print(org.name, end=',' if i < (
                             len(organisID)-1) else '\n')
@@ -141,11 +140,12 @@ if __name__ == "__main__":
                     select.append(selections[sel])
 
             except KeyError as err:
-                print("""Incorrect args. They must be comma seperated with no spaces.""")
-                if input("Do you want to see all available select arguments? (y/n) : ") == "y":
+                print(
+                    """\033[91mIncorrect args.\033[00m They must be comma seperated with no spaces.""")
+                if input(" Do you want to see all available select arguments?\n (y/n) : ") == "y":
                     for i, sel in enumerate(selections):
                         print(sel.name, end=',' if i < (
-                            len(organisID)-1) else '\n')
+                            len(selections)-1) else '\n')
 
                 sys.exit(1)
 
