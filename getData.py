@@ -14,9 +14,28 @@ else:
 
 
 class organisID(enum.Enum):
+    AreaTeam = 'LAT'
+    CareHome = 'SCL'
+    Clinic = 'CLI'
+    ClinCommisGrp = 'CCG'
     Dentist = 'DEN'
     GP = 'GPB'
+    GPPractice = 'GPP'
+    GenDirOfServ = 'GDOS'
+    GenServDir = 'GSD'
+    HealthAuth = 'HA'
+    HealthWell = 'HWB'
+    Hospital = 'HOS'
+    LocalAuth = 'LA'
+    MinorInj = 'MIU'
     Opticians = 'OPT'
+    Pharmacy = 'PHA'
+    RegionalArea = 'RAT'
+    SocialProv = 'SCP'
+    StratHealth = 'SHA'
+    Sustain = 'STP'
+    Trust = 'TRU'
+    UrgentCare = 'UC'
 
 
 def constrJSONBody(filter: str, select: str, order: str, top: int, count: bool) -> str:
