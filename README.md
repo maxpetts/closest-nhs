@@ -38,7 +38,7 @@ Typical program call: `$ python3 getData.py -oDentist,ClinCommisGrp -sName,Addre
 | `-b`       | `--by`           | coord, postplace, name, ods                 |
 | `-q`       | `--query`        | _Depends upon `-b`_                         |
 
-The argument passed to `-b` _or_ `-by` represents what the data returned by the API will be sorted by
+The argument passed to `-b` _or_ `-by` represents what the API will be polled for: `postplace` allows for seaching by postcode or place name.
 
 ### Organisation types
 
