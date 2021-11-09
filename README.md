@@ -10,14 +10,16 @@ I do not own any of the data you can recieve through this wrapper / guide & you 
 
 _Working as of: 9th Nov 2021_
 
-1. Create a NHS [developer account](https://developer.api.nhs.uk/register)
-2. Then go to your dev account [profile](https://developer.api.nhs.uk/profile) & copy your Primary key
+1. Create a NHS [developer account](https://developer.api.nhs.uk/register).
+2. Then go to your dev account [profile](https://developer.api.nhs.uk/profile) & copy your Primary key.
 3. Paste your key into a .env file at the root of this project. You can do this using `echo "NHSKEY=|your primary key|" > .env` - of course replace the pipes(|), and text inside them, with your personal key.
-4. Install the dependencies using pip3: `pip3 install python-dotenv requests`
+4. Install the dependencies using pip3: `pip3 install python-dotenv requests`.
 
 **OR**
 
-1. Type `make setup` in root folder of project
+1. Type `make setup` into terminal at the root folder of this project.
+2. Enter your API Key.
+3. Wait for pip to install dependencies then continue to [usage](#usage)
 
 # Usage
 
@@ -29,12 +31,12 @@ You must be within the root folder of this project.
 
 Typical program call: `$ python3 getData.py -oDentist -sName,Address -bname
 
-| Short Form | Long Form  | Argument                                    |
-| ---------- | ---------- | ------------------------------------------- |
-| `-o`       | `-organis` | [Organisation Types](###Organisation-types) |
-| `-s`       | `-select`  | [Selection Types](###Selection-types)       |
-| `-b`       | `-by`      | coord, postplace, name, ods                 |
-| `-q`       | `-query`   | _Depends upon `-b`_                         |
+| Short Form | Long Form        | Argument                                    |
+| ---------- | ---------------- | ------------------------------------------- |
+| `-o`       | `--organisation` | [Organisation Types](###Organisation-types) |
+| `-s`       | `--select`       | [Selection Types](###Selection-types)       |
+| `-b`       | `--by`           | coord, postplace, name, ods                 |
+| `-q`       | `--query`        | _Depends upon `-b`_                         |
 
 The argument passed to `-b` _or_ `-by` represents what the returned data will be sorted by
 
