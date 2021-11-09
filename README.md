@@ -1,8 +1,10 @@
 # closest-nhs
 
-A utility to get the closest NHS location: GPs, Dentists, Pharmacies etc.
+A utility to search for the nearest NHS facility.
 
 _A NHS API Wrapper?_
+
+I do not own any of the data you can recieve through this wrapper / guide & you cannot recieve any data from the NHS without your own API key.
 
 # Set-up
 
@@ -38,7 +40,7 @@ The argument passed to `-b` _or_ `-by` represents what the returned data will be
 
 ### Organisation types
 
-This argument is the complete list of organisation types provided by the NHS.
+This argument is the complete list of organisation types provided by the NHS, _this could also be considered as a facility type_.
 The below list is the direct argument format; minus the minus(-).
 
 - AreaTeam
@@ -98,3 +100,4 @@ _I'm not sure what an ODS string looks like - if you do please make a pull reque
 - [ ] GUI
 - [ ] Add fallback if API fails - sql database
 - [ ] Swap to better architecture (seperate Wrapper & Handler)
+- [ ] Add API key as argument
