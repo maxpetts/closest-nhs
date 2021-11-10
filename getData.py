@@ -59,33 +59,34 @@ class selections(enum.Enum):
 
 # move to handler
 def dispatchRequest(reqBody: str,
-                    url="https://api.nhs.uk/service-search/search-postcode-or-place?api-version=1",
+                    url="https://api.nhs.uk/service-search/search/?api-version=1",
                     reqHeaders={"subscription-key": getenv("NHSKEY"), "Content-Type": "application/json"}) -> requests.Response:
     """Dispatch a post request to the NHS search"""
 
     # Should I strip REST request queries?
+    prGreen("Using URL:")
+    print(url)
     prGreen("Dispatching with headers of:")
     print(reqHeaders)
     prGreen("Dispatching with body of:")
     print(reqBody)
-    print(
-        f"Dispatching with headers of: {reqHeaders}\nDispatching with body of: {reqBody}")
-    res = requests.post(url, headers=reqHeaders, data=reqBody)
-    return res
+
+    return requests.post(url, headers=reqHeaders, data=reqBody)
 
 
 # move to handler
-def constrJSONBody(filter: str, select: str, order: str = selections.Name.value, top: int = 1, count: bool = False) -> str:
-    """Contstruct a json string of all the required search queries for REST API"""
-    body = {"filter": filter, "select": select,
+def constrJSONBody(filter: str, select: str, order: str = selections.Name.value, searchFields: str = "", search: str = "", top: int = 1, count: bool = False) -> str:
+    """Construct a json string of all the required search queries for REST API"""
+    body = {"filter": filter, "searchFields": searchFields,
+            "search": search, "select": select,
             "orderby": order, "top": top, "count": count}
     return json.dumps(body)
 
 
 # move to handler
 def constructFilterStr(orgIDs: list(organisID)) -> str:
-    return " or ".join(
-        [f"(OrganisationTypeID eq '{orgID.value}')" for orgID in orgIDs])
+    return ") or (".join(
+        [f"OrganisationTypeID eq '{orgID.value}'" for orgID in orgIDs])
 
 
 # move to handler
@@ -95,12 +96,21 @@ def constructSelectStr(selections: list(selections)) -> str:
 
 # move to wrapper
 def searchByPostcode(postCode: str, orgTypes: list(organisID), select: list(selections) = [selections.Name]) -> requests.Response:
-    url = "https://api.nhs.uk/service-search/search-postcode-or-place?api-version=1&search=b90"
+    url = "https://api.nhs.uk/service-search/search-postcode-or-place?api-version=1&search=" + \
+        postCode.replace(" ", "")
 
     return dispatchRequest(
         constrJSONBody(constructFilterStr(orgTypes),
-                       constructSelectStr(select)),
-        url)
+                       constructSelectStr(select)), url)
+
+
+def searchByName(name: str, orgTypes: list(organisID), select: list(selections) = [selections.Name]) -> requests.Response:
+
+    return dispatchRequest(
+        constrJSONBody(constructFilterStr(orgTypes),
+                       constructSelectStr(select),
+                       searchFields="OrganisationName,OrganisationAliases",
+                       search=name))
 
 
 if __name__ == "__main__":
@@ -155,13 +165,12 @@ if __name__ == "__main__":
             acceptable = ["coord", "postplace", "name", "ods"]
             if arg in acceptable:
                 by = arg
-                prGreen(f""" Searching by {by} """)
             else:
                 print(
-                    """\033[91mIncorrect args.\033[00m They must be comma seperated with no spaces.""")
+                    f"""\033[91mIncorrect args: {opts}\033[00m They must be comma seperated with no spaces.""")
                 if input(" Do you want to see all available arguments to search by?\n (y/n) : ") == "y":
-                    for i, sel in enumerate(acceptable):
-                        print(sel.name, end=',' if i < (
+                    for i, by in enumerate(acceptable):
+                        print(by.name, end=',' if i < (
                             len(acceptable)-1) else '\n')
 
                 sys.exit(1)
@@ -170,3 +179,16 @@ if __name__ == "__main__":
             query = arg
 
     print(by)
+
+    if by == "postplace":
+        print("Searching...")
+        print(searchByPostcode(query, organisation, select).text)
+    elif by == "name":
+        print("Searching...")
+        print(searchByName(query, organisation, select).text)
+    elif by == "coord":
+        print("searching by coord")
+    elif by == "ods":
+        print("searching by ods")
+    else:
+        print("This should be unreachable - what have you done..")
