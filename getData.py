@@ -108,7 +108,6 @@ def searchByName(name: str, orgTypes: list(organisID), select: list(selections) 
 
 
 if __name__ == "__main__":
-    # TODO: parse inp args to constrJSONBody
 
     organisation: list(organisID) = []
     select: list(selections) = []
@@ -172,17 +171,15 @@ if __name__ == "__main__":
         elif opt in ('--query'):
             query = arg
 
-    print(by)
-
     if by == "postplace":
-        print("Searching...")
+        print(f"Searching for {query} by postcode / place...")
         print(searchByPostcode(query, organisation, select).text)
     elif by == "name":
-        print("Searching...")
-        print(searchByName(query, organisation, select).text)
+        print(f"\nSearching for '{query}' by name...\n")
+        print(searchByName(name=query, orgTypes=organisation, select=select).text)
     elif by == "coord":
-        print("searching by coord")
+        print(f"Searching by {query} coords...")
     elif by == "ods":
-        print("searching by ods")
+        print(f"Searching by {query} ods...")
     else:
-        print("This should be unreachable - what have you done..")
+        prRed("This should be unreachable - what have you done..")
