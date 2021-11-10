@@ -150,6 +150,21 @@ if __name__ == "__main__":
                 sys.exit(1)
 
         elif opt in ('-b', '--by'):
-            by = arg
+            acceptable = ["coord", "postplace", "name", "ods"]
+            if arg in acceptable:
+                by = arg
+                prGreen(f""" Searching by {by} """)
+            else:
+                print(
+                    """\033[91mIncorrect args.\033[00m They must be comma seperated with no spaces.""")
+                if input(" Do you want to see all available arguments to search by?\n (y/n) : ") == "y":
+                    for i, sel in enumerate(acceptable):
+                        print(sel.name, end=',' if i < (
+                            len(acceptable)-1) else '\n')
+
+                sys.exit(1)
+
         elif opt in ('-q', '--query'):
             query = arg
+
+    print(by)
