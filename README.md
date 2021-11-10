@@ -29,7 +29,11 @@ You must be within the root folder of this project.
 
 ## Options
 
-Typical program call: `$ python3 getData.py -oDentist,ClinCommisGrp -sName,Address,OpenTimes -bname`
+Typical program call:
+
+**Short:** `$ python3 getData.py -oDentist,ClinCommisGrp -sName,Address,OpenTimes -bname --query"The Ivy"`
+
+**Long:** `$ python3 getData.py --organisation=Dentist,ClinCommisGrp --select=Type,Name,Address,OpenTimes --by=name --query="The Ivy"`
 
 | Short Form | Long Form        | Argument                                    |
 | ---------- | ---------------- | ------------------------------------------- |
@@ -39,6 +43,8 @@ Typical program call: `$ python3 getData.py -oDentist,ClinCommisGrp -sName,Addre
 |            | `--query`        | _Depends upon `-b`_                         |
 
 The argument passed to `-b` _or_ `-by` represents what the API will be polled for: `postplace` allows for seaching by postcode or place name.
+
+If your query contains spaces it must be wrapped in quotes!
 
 ### Organisation types
 
@@ -80,6 +86,8 @@ Multiple arguments are accepted as comma-seperated strings; without spaces.
 - Address
 - OpenTimes
 - Contact
+- Alias
+- Type
 
 ### Query types
 
@@ -99,8 +107,8 @@ _I'm not sure what an ODS string looks like - if you do please make a pull reque
 
 - [x] Get JSON from NHS API
 - [ ] Parse JSON data into readble results
-- [ ] Accept search query as user input
-- [ ] Allow user to select what Organisation type to search for.
+- [x] Accept search query as user input
+- [x] Allow user to select what Organisation type to search for.
 - [ ] GUI
 - [ ] Add fallback if API fails - sql database
 - [ ] Swap to better architecture (seperate Wrapper & Handler)
