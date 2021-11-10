@@ -104,6 +104,6 @@ _I'm not sure what an ODS string looks like - if you do please make a pull reque
 - [ ] GUI
 - [ ] Add fallback if API fails - sql database
 - [ ] Swap to better architecture (seperate Wrapper & Handler)
-- [ ] Create better constrJSONBody function
-  - [ ] Dont send null body tags/attributes(?)
+- [x] ~~Create better constrJSONBody function~~ Now hardcoded into each `searchBy` function
+  - [x] ~~Dont send null body tags/attributes(?)~~ See above
 - [ ] Unit tests
