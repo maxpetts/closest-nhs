@@ -55,6 +55,8 @@ class selections(enum.Enum):
     Address = "Address1,Address2,Address3,City,County,Postcode"
     OpenTimes = "OpeningTimes"
     Contact = "Contacts"
+    Alias = "OrganisationAliases"
+    Type = "OrganisationTypeID"
 
 
 # move to handler
