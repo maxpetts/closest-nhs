@@ -46,28 +46,28 @@ This argument is the complete list of organisation types provided by the NHS, _t
 The below list is the direct argument format; minus the minus(-).
 Multiple arguments are accepted as comma-seperated strings; without spaces.
 
-- AreaTeam
-- CareHome
-- Clinic
-- ClinCommisGrp
-- Dentist
-- GP
-- GPPractice
-- GenDirOfServ
-- GenServDir
-- HealthAuth
-- HealthWell
-- Hospital
-- LocalAuth
-- MinorInj
-- Opticians
-- Pharmacy
-- RegionalArea
-- SocialProv
-- StratHealth
-- Sustain
-- Trust
-- UrgentCare
+- AreaTeam = Area Team
+- CareHome = Care homes and care at home
+- Clinic = Clinic
+- ClinCommisGrp = Clinical Commissioning Group
+- Dentist = Dentists
+- GP = GP
+- GPPractice = GP practice
+- GenDirOfServ = Generic Directory of Services
+- GenServDir = Generic Service Directory
+- HealthAuth = Health Authority
+- HealthWell = Health and Wellbeing Board
+- Hospital = Hospital
+- LocalAuth = Local Authority
+- MinorInj = Minor Injury Unit
+- Opticians = Opticians
+- Pharmacy = Pharmacy
+- RegionalArea = Regional Area Team
+- SocialProv = Social care provider
+- StratHealth = Strategic Health Authority
+- Sustain = Sustainability and Transformation Partnership
+- Trust = Trust
+- UrgentCare = Urgent Care
 
 ### Selection types
 
@@ -106,3 +106,4 @@ _I'm not sure what an ODS string looks like - if you do please make a pull reque
 - [ ] Swap to better architecture (seperate Wrapper & Handler)
 - [ ] Create better constrJSONBody function
   - [ ] Dont send null body tags/attributes(?)
+- [ ] Unit tests
