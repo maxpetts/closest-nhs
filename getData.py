@@ -176,7 +176,7 @@ if __name__ == "__main__":
         print(searchByPostcode(query, organisation, select).text)
     elif by == "name":
         print(f"\nSearching for '{query}' by name...\n")
-        print(searchByName(name=query, orgTypes=organisation, select=select).text)
+        print(searchByName(query, organisation, select).text)
     elif by == "coord":
         print(f"Searching by {query} coords...")
     elif by == "ods":
