@@ -113,10 +113,12 @@ if __name__ == "__main__":
 
     try:
         opts, remainder = getopt.gnu_getopt(
-            sys.argv[1:], 'o:s:b:q', ['organisation=', 'select=', 'by=', 'query='])
+            sys.argv[1:], 'o:s:b:query', ['organisation=', 'select=', 'by=', 'query='])
     except getopt.GetoptError as err:
         print('Argument Error:', err)
         sys.exit(1)
+
+    print(f"args: {opts}")
 
     for opt, arg in opts:
         if opt in ('-o', '--organisation'):
@@ -164,7 +166,7 @@ if __name__ == "__main__":
 
                 sys.exit(1)
 
-        elif opt in ('-q', '--query'):
+        elif opt in ('--query'):
             query = arg
 
     print(by)
