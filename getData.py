@@ -78,8 +78,8 @@ def dispatchRequest(reqBody: str,
 
 # move to handler
 def constructFilterStr(orgIDs: list(organisID)) -> str:
-    return ") or (".join(
-        [f"OrganisationTypeID eq '{orgID.value}'" for orgID in orgIDs])
+    return f"OrganisationTypeID eq '{orgIDs[0].value}'" if len(orgIDs) == 1 else " or ".join(
+        f"(OrganisationTypeID eq '{orgID.value}')" for orgID in orgIDs)
 
 
 # move to handler
