@@ -24,16 +24,16 @@ _Working as of: 9th Nov 2021_
 # Usage
 
 After following the steps in the set-up section above, enter the following into your terminal of choice:
-`$ python3 getData.py`.
+`$ python3 nhs-wrap.py`.
 You must be within the root folder of this project.
 
 ## Options
 
 Typical program call:
 
-**Short:** `$ python3 getData.py -oDentist,ClinCommisGrp -sName,Address,OpenTimes -bname --query"The Ivy"`
+**Short:** `$ python3 nhs-wrap.py -oDentist,ClinCommisGrp -sName,Address,OpenTimes -bname --query"The Ivy"`
 
-**Long:** `$ python3 getData.py --organisation=Dentist,ClinCommisGrp --select=Type,Name,Address,OpenTimes --by=name --query="The Ivy"`
+**Long:** `$ python3 nhs-wrap.py --organisation=Dentist,ClinCommisGrp --select=Type,Name,Address,OpenTimes --by=name --query="The Ivy"`
 
 | Short Form | Long Form        | Argument                                    |
 | ---------- | ---------------- | ------------------------------------------- |

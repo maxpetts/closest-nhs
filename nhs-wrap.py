@@ -3,7 +3,6 @@ from os import getenv
 import requests
 import getopt
 import enum
-import json
 import sys
 
 
