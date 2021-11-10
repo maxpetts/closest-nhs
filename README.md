@@ -104,4 +104,5 @@ _I'm not sure what an ODS string looks like - if you do please make a pull reque
 - [ ] GUI
 - [ ] Add fallback if API fails - sql database
 - [ ] Swap to better architecture (seperate Wrapper & Handler)
-- [ ] Add API key as argument
+- [ ] Create better constrJSONBody function
+  - [ ] Dont send null body tags/attributes(?)
