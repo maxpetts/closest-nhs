@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  webserver:
+    build: ./webserver
+    volumes:
+      - ./webserver:/usr/src/app
+    ports:
+      - 3000:80
