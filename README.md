@@ -6,6 +6,10 @@ _A NHS API Wrapper?_
 
 I do not own any of the data you can recieve through this wrapper/guide.
 
+# Notes
+
+The following guide below is for the nhs-wrap.py file. The other folders are extensions of this file; for seperate use-cases.
+
 # Set-up
 
 _Working as of: 9th Nov 2021_
