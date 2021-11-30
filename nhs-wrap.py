@@ -92,7 +92,8 @@ def searchByPostcode(postCode: str, orgTypes: list(organisID), select: list(sele
         postCode.replace(" ", "")
 
     return dispatchRequest(f'''{{"filter": "{constructFilterStr(orgTypes)}",
-                       "select": "{constructSelectStr(select)}"}}'''.strip(), url)
+                       "select": "{constructSelectStr(select)}",
+                       "top": 2}}'''.strip(), url)
 
 
 # move to wrapper
