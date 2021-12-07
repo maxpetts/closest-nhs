@@ -8,7 +8,7 @@ I do not own any of the data you can recieve through this wrapper/guide.
 
 # Notes
 
-The following guide below is for the nhs-wrap.py file. The other folders are extensions of this file; for seperate use-cases.
+The following guide below is for the nhs-wrap.py file. The other folders are extensions/different use-cases of this file; for seperate use-cases.
 
 # Set-up
 
