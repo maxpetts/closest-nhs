@@ -1,14 +1,7 @@
 from flask_restful import Resource, Api
 from flask import Flask, request
-from dotenv import load_dotenv
 import handler as Handler
-from os import getenv
 
-
-if load_dotenv('config/.env'):
-    if (getenv('NHSKEY') is None):
-        print("No api key found")
-        exit()
 
 # Instantiate the app
 app = Flask(__name__)

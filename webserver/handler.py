@@ -1,6 +1,14 @@
+from dotenv import load_dotenv
 from enum import Enum
 from os import getenv
 import requests
+import sys
+
+
+if load_dotenv('config/.env'):
+    if (getenv('NHSKEY') is None):
+        print("No api key found")
+        exit()
 
 
 class organisID(Enum):
@@ -42,13 +50,15 @@ def dispatchRequest(reqBody: str,
                     reqHeaders={"subscription-key": getenv("NHSKEY"), "Content-Type": "application/json"}) -> requests.Response:
     """Dispatch a post request to the NHS search"""
 
+    sys.stdout.flush()
+
     # Should I strip REST request queries?
-    print("URL: " + url)
-    print("\nhead: ")
-    print(reqHeaders)
-    print("\nbody: ")
-    print(reqBody)
-    print("\n")
+    # print("URL: " + url)
+    # print("\nhead: ")
+    # print(reqHeaders)
+    # print("\nbody: ")
+    # print(reqBody)
+    # print("\n")
 
     return requests.post(url, headers=reqHeaders, data=reqBody)
 
