@@ -18,6 +18,8 @@ flask==2.0.2
     #   flask-restful
 flask-restful==0.3.9
     # via -r requirements.in
+gunicorn==20.1.0
+    # via -r requirements.in
 idna==3.3
     # via requests
 itsdangerous==2.0.1
@@ -38,3 +40,6 @@ urllib3==1.26.7
     # via requests
 werkzeug==2.0.2
     # via flask
+
+# The following packages are considered to be unsafe in a requirements file:
+# setuptools
