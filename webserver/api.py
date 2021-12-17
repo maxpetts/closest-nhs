@@ -20,7 +20,7 @@ class ByName(Resource):
         resJSON = Handler.dispatchRequest(f'''{{"filter": "{Handler.constructFilterStr(types)}",
                 "searchFields": "OrganisationName,OrganisationAliases",
                 "search": "{name}",
-                "select": "OrganisationName,Address1,Address2,Address3,City,County,Postcode,OpeningTimes",
+                "select": "OrganisationID,OrganisationName,Address1,Address2,Address3,City,County,Postcode,OpeningTimes",
                 "top": {num},
                 "skip": 0,
                 "count": true}}''').json()
@@ -28,6 +28,8 @@ class ByName(Resource):
         if 'value' in resJSON:
             # Not sure this is the right http error code
             return resJSON['value'] if len(resJSON['value']) is not 0 else 204
+        else:
+            return 501  # IMPLEMENT HANDLE IF RESPONSE INCORRECT
 
 
 class ByPostcode(Resource):
@@ -40,12 +42,14 @@ class ByPostcode(Resource):
             return 'postcode or organisation type is required to search', 404
 
         resJSON = Handler.dispatchRequest(f'''{{"filter": "{Handler.constructFilterStr(types)}",
-                "select": "OrganisationName,Address1,Address2,Address3,City,County,Postcode,OpeningTimes",
                 "top": {num}}}''',
                                           "https://api.nhs.uk/service-search/search-postcode-or-place?api-version=1&search=" +
                                           pc.replace(" ", "")).json()
 
-        return resJSON
+        if 'value' in resJSON:
+            return resJSON['value'] if len(resJSON['value']) is not 0 else 204
+        else:
+            return 501
 
 
 # Create routes
