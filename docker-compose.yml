@@ -4,6 +4,15 @@ services:
   webserver:
     build: ./webserver
     volumes:
-      - ./webserver:/usr/src/app
+      - ./webserver:/usr/src/webserver
     ports:
       - 3000:80
+    user: 1000:1000
+
+  app:
+    build: ./app
+    volumes:
+      - ./app:/usr/src/app
+    ports:
+      - 3001:8080
+    user: 1000:1000

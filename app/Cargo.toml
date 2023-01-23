@@ -1,0 +1,13 @@
+[package]
+name = "app"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+web-sys = { version = "0.3.56", features = [ "HtmlSelectElement", "HtmlOptionsCollection" ] }
+yew = { git = "https://github.com/yewstack/yew/", features = [ "csr" ] }
+reqwest = { version = "0.11", features = [ "json" ] }
+wasm-bindgen = "0.2.79"
+wasm-bindgen-futures = "0.4.29"
